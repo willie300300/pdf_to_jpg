@@ -22,15 +22,8 @@ def crop_jpg(pagess):
         n = i + 1
         newfilename = f[:-4] + str(n) + '.jpeg'
         im = PIL_Image.open(newfilename)
-        # 圖片的寬度和高度
         img_size = im.size
         print("圖片寬度和高度分別是{}".format(img_size))
-        '''
-        裁剪：傳入一個元組作為引數
-        元組裡的元素分別是：（距離圖片左邊界距離x， 距離圖片上邊界距離y，
-        距離圖片左邊界距離 裁剪框寬度x w，距離圖片上邊界距離 裁剪框高度y h）
-        '''
-        # 擷取圖片中一塊寬和高都是250的
         x = 0
         y = 0
         w = 1970
