@@ -6,24 +6,25 @@
 from wand.image import Image
 from PIL import Image as PIL_Image
 
+def pdf_to_jpg(f):
+    with(Image(filename=f, resolution=1000)) as source: 
+        images = source.sequence
+        pages = len(images)
+        for i in range(pages):
+            n = i + 1
+            newfilename = f[:-4] + str(n) + '.jpeg'
+            Image(images[i]).save(filename=newfilename)
+        return pages
 
-f = "w001.pdf"
-with(Image(filename=f, resolution=1000)) as source: 
-    images = source.sequence
-    pages = len(images)
-    for i in range(pages):
+
+def crop_jpg(pagess):
+    for i in range(pagess):
         n = i + 1
         newfilename = f[:-4] + str(n) + '.jpeg'
-        Image(images[i]).save(filename=newfilename)
-
-        # -*-coding:utf-8-*-
-       
-
         im = PIL_Image.open(newfilename)
         # 圖片的寬度和高度
         img_size = im.size
         print("圖片寬度和高度分別是{}".format(img_size))
-
         '''
         裁剪：傳入一個元組作為引數
         元組裡的元素分別是：（距離圖片左邊界距離x， 距離圖片上邊界距離y，
@@ -38,6 +39,9 @@ with(Image(filename=f, resolution=1000)) as source:
         region.save(newfilename)
 
 
+f = "w001.pdf"
+pagess = pdf_to_jpg(f)
+crop_jpg(pagess)
        
 
 
