@@ -12,7 +12,7 @@ def pdf_to_jpg(f):
         pages = len(images)
         for i in range(pages):
             n = i + 1
-            newfilename = f[:-4] + str(n) + '.jpeg'
+            newfilename = f[:-4] + '-'+ str(n) + '.jpeg'
             Image(images[i]).save(filename=newfilename)
         return pages
 
@@ -20,7 +20,7 @@ def pdf_to_jpg(f):
 def crop_jpg(pagess):
     for i in range(pagess):
         n = i + 1
-        newfilename = f[:-4] + str(n) + '.jpeg'
+        newfilename = f[:-4] + '-'+ str(n) + '.jpeg'
         im = PIL_Image.open(newfilename)
         img_size = im.size
         print("圖片寬度和高度分別是{}".format(img_size))
@@ -32,7 +32,7 @@ def crop_jpg(pagess):
         region.save(newfilename)
 
 
-f = "w001.pdf"
+f = input('請輸入PDF檔名(例如123.pdf):')
 pagess = pdf_to_jpg(f)
 crop_jpg(pagess)
        
