@@ -19,7 +19,7 @@ def pdf_to_jpg(f):
         return pages
 
 
-def crop_jpg(pagess):
+def crop_jpg(pagess,f):
     print('正在裁切圖片')
     for i in range(pagess):
         n = i + 1
@@ -35,16 +35,18 @@ def crop_jpg(pagess):
         region.save(newfilename)
 
 
+def main():
+    f = input('請輸入PDF檔名(例如:123.pdf): ')
+    if os.path.isfile(f):  # 檢查檔案是否存在
+        print("檔案存在，開始轉檔。")
+        pagess = pdf_to_jpg(f)
+        crop_jpg(pagess,f)
 
-f = input('請輸入PDF檔名(例如:123.pdf): ')
-if os.path.isfile(f):  # 檢查檔案是否存在
-    print("檔案存在，開始轉檔。")
-    pagess = pdf_to_jpg(f)
-    crop_jpg(pagess)
+    else:
+        print("檔案不存在。")
 
-else:
-    print("檔案不存在。")
 
+main()
 
      
 
