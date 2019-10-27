@@ -19,9 +19,9 @@ def pdf_to_jpg(f):
         return pages
 
 
-def crop_jpg(pagess,f):
+def crop_jpg(pages, f):
     print('正在裁切圖片')
-    for i in range(pagess):
+    for i in range(pages):
         n = i + 1
         newfilename = f[:-4] + '-'+ str(n) + '.jpeg'
         im = PIL_Image.open(newfilename)
@@ -39,8 +39,8 @@ def main():
     f = input('請輸入PDF檔名(例如:123.pdf): ')
     if os.path.isfile(f):  # 檢查檔案是否存在
         print("檔案存在，開始轉檔。")
-        pagess = pdf_to_jpg(f)
-        crop_jpg(pagess,f)
+        pages = pdf_to_jpg(f)
+        crop_jpg(pages, f)
 
     else:
         print("檔案不存在。")
